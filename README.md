@@ -1,4 +1,4 @@
-# NBitCoin4Unity
+# NBitcoin4Unity
 # NBitcoin + QBitNinja4Unity + UniRx + ZXing4QRCode + ProgrammingBlockChainCodeExample
 1. NBitcoin  : https://github.com/MetacoSA/NBitcoin<br />
 1.1. Build DLL for Unity3D : https://github.com/MetacoSA/NBitcoin#how-to-use-in-unity-35<br />

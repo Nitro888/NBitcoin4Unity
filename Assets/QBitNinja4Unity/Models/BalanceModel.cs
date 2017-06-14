@@ -79,7 +79,7 @@ namespace QBitNinja4Unity.Models
 			result.Immature			= BalanceSummaryDetails.Create(immature);
 			result.OlderImmature	= olderImmature;
 
-			if(cacheHit.Length>0)
+			if(cacheHit!=null&&cacheHit.Length>0)
 				result.CacheHit	= (QBitNinja.Client.Models.CacheHit) Enum.Parse(typeof(QBitNinja.Client.Models.CacheHit),cacheHit,true);
 
 			return result;

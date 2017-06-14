@@ -89,5 +89,11 @@ namespace QBitNinja4Unity
 			             	Subscribe(	x	=> response(JsonUtility.FromJson<Models.BalanceSummary>(x).Result(),network),
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
+		static public void GetBalanceSummary(string address, NBitcoin.Network network, GetBalanceSummaryResponse response, bool colored = true)
+		{
+			ObservableWWW.Get(URL(network, "balances/" + EscapeUrlPart(address) + "/summary" + CreateParameters("colored", colored))).
+							 Subscribe(x => response(JsonUtility.FromJson<Models.BalanceSummary>(x).Result(), network),
+										ex => Debug.Log("error : " + ex.Message));
+		}
 	}
 }

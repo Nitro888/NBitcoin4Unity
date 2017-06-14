@@ -17,7 +17,7 @@ namespace ProgrammingBlockchainCodeExamples
 			QBitNinja4Unity.QBitNinjaClient.GetTransaction(transactionId, Network.Main, TransactionResponse);
 		}
 
-		void TransactionResponse(QBitNinja.Models.GetTransactionResponse transactionResponse, Network network)
+		void TransactionResponse(QBitNinja.Client.Models.GetTransactionResponse transactionResponse, Network network)
 		{
 			Transaction transaction = transactionResponse.Transaction;
 
@@ -118,7 +118,7 @@ namespace ProgrammingBlockchainCodeExamples
 			QBitNinja4Unity.QBitNinjaClient.GetTransaction(firstPreviousOutPoint.Hash, network, FirstPreviousTransactionResponse);
 		}
 
-		void FirstPreviousTransactionResponse(QBitNinja.Models.GetTransactionResponse firstPreviousTransactionResponse, Network network)
+		void FirstPreviousTransactionResponse(QBitNinja.Client.Models.GetTransactionResponse firstPreviousTransactionResponse, Network network)
 		{
 			UnityEngine.Debug.Log(firstPreviousTransactionResponse.IsCoinbase); // False
             Transaction firstPreviousTransaction = firstPreviousTransactionResponse.Transaction;

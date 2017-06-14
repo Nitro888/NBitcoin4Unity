@@ -31,7 +31,7 @@ namespace ProgrammingBlockchainCodeExamples
 			QBitNinja4Unity.QBitNinjaClient.GetTransaction(transactionId, network, TransactionResponse);
 		}
 
-		void TransactionResponse(QBitNinja.Models.GetTransactionResponse transactionResponse, Network network)
+		void TransactionResponse(QBitNinja.Client.Models.GetTransactionResponse transactionResponse, Network network)
 		{
 			UnityEngine.Debug.Log(transactionResponse.TransactionId); // 13cb292d07883f6a87b2db52c807e411e6330c9d7756535a7169a3ced8fe4385
             UnityEngine.Debug.Log(transactionResponse.Block.Confirmations);
@@ -105,7 +105,7 @@ namespace ProgrammingBlockchainCodeExamples
 
 			QBitNinja4Unity.QBitNinjaClient.Broadcast(transaction, network, BroadcastResponse);
 		}
-		void BroadcastResponse(QBitNinja.Models.BroadcastResponse broadcastResponse, Network network)
+		void BroadcastResponse(QBitNinja.Client.Models.BroadcastResponse broadcastResponse, Network network)
 		{
             if (!broadcastResponse.Success)
             {

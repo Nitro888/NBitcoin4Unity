@@ -16,15 +16,17 @@ namespace QBitNinja4Unity.Models
 		public bool				success;
 		public BroadcastError	error;
 
-		public QBitNinja.Models.BroadcastResponse Result()
+		public QBitNinja.Client.Models.BroadcastResponse Result()
 		{
-			var result	= new QBitNinja.Models.BroadcastResponse();
+			//UnityEngine.Debug.Log(UnityEngine.JsonUtility.ToJson(this,true));
+
+			var result	= new QBitNinja.Client.Models.BroadcastResponse();
 
 			result.Success = success;
 
 			if (!success)
 			{
-				result.Error			= new QBitNinja.Models.BroadcastError();
+				result.Error			= new QBitNinja.Client.Models.BroadcastError();
 				result.Error.ErrorCode	= (NBitcoin.Protocol.RejectCode)error.errorCode;
 				result.Error.Reason		= error.reason;
 			}

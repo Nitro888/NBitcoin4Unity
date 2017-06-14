@@ -15,11 +15,13 @@ namespace QBitNinja4Unity.Models
 		public string		bits;
 		public double		difficulty;
 
-		public QBitNinja.Models.WhatIsBlockHeader Result()
+		public QBitNinja.Client.Models.WhatIsBlockHeader Result()
 		{
+			//UnityEngine.Debug.Log(UnityEngine.JsonUtility.ToJson(this,true));
+
 			var blockHeader			= new BlockHeader();
 			blockHeader.Bits		= new Target(uint256.Parse("1000000000000000000000000000000000000000000000000000000000000000"));
-			var result				= new QBitNinja.Models.WhatIsBlockHeader(blockHeader);
+			var result				= new QBitNinja.Client.Models.WhatIsBlockHeader(blockHeader);
 
 			result.Hash				= uint256.Parse(hash);
 			result.Previous			= uint256.Parse(previous);

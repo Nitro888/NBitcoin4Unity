@@ -10,9 +10,9 @@ public class _BalanceSummary : UnityEngine.MonoBehaviour
 			QBitNinja4Unity.QBitNinjaClient.GetBalanceSummary(bitcoinPrivateKey.GetAddress(), bitcoinPrivateKey.Network, GetBalanceSummaryResponse);
 		}
 
-		void GetBalanceSummaryResponse(QBitNinja4Unity.Models.BalanceSummaryJson result, NBitcoin.Network network)
+		void GetBalanceSummaryResponse(QBitNinja.Client.Models.BalanceSummary result, NBitcoin.Network network)
 		{
-			UnityEngine.Debug.Log(UnityEngine.JsonUtility.ToJson(result,true));
+			UnityEngine.Debug.Log(result.Spendable.Amount);
 		}
 	}
 }

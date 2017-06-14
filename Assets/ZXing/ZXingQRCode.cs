@@ -48,7 +48,7 @@ public class ZXingQRCode : MonoBehaviour {
 		gameObject.SetActive(false);
 	}
 
-	void OnSend()
+	protected virtual void OnSend()
 	{
 		// todo : 
 	}
@@ -119,8 +119,9 @@ public class ZXingQRCode : MonoBehaviour {
 		while (result == null)
 		{
 			qrAddress.text	= "Scaning" + new string('.', dot%8);
+			if(dot%2==0)
+				result = iBR.Decode(webCamTexture.GetPixels32(), webCamTexture.width, webCamTexture.height);
 			dot++;
-			result = iBR.Decode(webCamTexture.GetPixels32(), webCamTexture.width, webCamTexture.height);
 			yield return null;
 		}
 
@@ -172,7 +173,8 @@ public class ZXingQRCode : MonoBehaviour {
 			Options	= new QrCodeEncodingOptions
 			{
 				Height	= height,
-				Width	= width
+				Width	= width,
+				Margin	= 0
 			}
 		};
 		return writer.Write(textForEncoding);

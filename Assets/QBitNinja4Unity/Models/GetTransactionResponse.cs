@@ -13,12 +13,12 @@ namespace QBitNinja4Unity.Models
 		public string			medianTimePast;
 		public string			blockTime;
 
-		static public QBitNinja.Models.BlockInformation Create(BlockInformation block)
+		static public QBitNinja.Client.Models.BlockInformation Create(BlockInformation block)
 		{
 			if(block==null)
 				return null;
 
-			var blockInformation			= new QBitNinja.Models.BlockInformation(new BlockHeader(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(block.blockHeader)));
+			var blockInformation			= new QBitNinja.Client.Models.BlockInformation(new BlockHeader(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(block.blockHeader)));
 
 			blockInformation.Height			= block.height;
 			blockInformation.Confirmations	= block.confirmations;
@@ -37,7 +37,7 @@ namespace QBitNinja4Unity.Models
 		public string			scriptPubKey;
 		public string			redeemScript;
 
-		static ICoin CreateCoin(CoinJson coin)
+		static ICoin Create(CoinJson coin)
 		{
 			var transactionId	= uint256.Parse(coin.transactionId);
 			var scriptPubKey	= new Script(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(coin.scriptPubKey));
@@ -54,7 +54,7 @@ namespace QBitNinja4Unity.Models
 			var coins = new ICoin[iCoins.Length];
 
 			for (int i = 0; i < coins.Length; i++)
-				coins[i] = CreateCoin(iCoins[i]);
+				coins[i] = Create(iCoins[i]);
 
 			return coins;
 		}
@@ -72,9 +72,11 @@ namespace QBitNinja4Unity.Models
 		public string				firstSeen;
 		public int					fees;
 
-		public QBitNinja.Models.GetTransactionResponse Result()
+		public QBitNinja.Client.Models.GetTransactionResponse Result()
 		{
-			var result					= new QBitNinja.Models.GetTransactionResponse();
+			//UnityEngine.Debug.Log(UnityEngine.JsonUtility.ToJson(this,true));
+
+			var result					= new QBitNinja.Client.Models.GetTransactionResponse();
 
 			result.Transaction			= new Transaction(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(transaction));
 			result.TransactionId		= uint256.Parse(transactionId);
@@ -83,7 +85,7 @@ namespace QBitNinja4Unity.Models
 			result.SpentCoins.AddRange(CoinJson.Create(spentCoins));
 			result.ReceivedCoins.AddRange(CoinJson.Create(receivedCoins));
 			result.FirstSeen			= DateTimeOffset.Parse(firstSeen);
-			result.Fees					= new Money(fees);
+			result.Fees					= fees;
 
 			return result;
 		}

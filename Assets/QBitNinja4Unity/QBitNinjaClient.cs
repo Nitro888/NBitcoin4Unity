@@ -42,7 +42,7 @@ namespace QBitNinja4Unity
 			return "?" + result.Substring(0, result.Length - 1);
 		}
 
-		public delegate void GetTransactionResponse(QBitNinja.Models.GetTransactionResponse result, NBitcoin.Network network);
+		public delegate void GetTransactionResponse(QBitNinja.Client.Models.GetTransactionResponse result, NBitcoin.Network network);
 		static public void GetTransaction(uint256 transactionId, NBitcoin.Network network, GetTransactionResponse response)
 		{
 			ObservableWWW.Get(URL(network, "transactions/" + EscapeUrlPart(transactionId.ToString()))).
@@ -50,7 +50,7 @@ namespace QBitNinja4Unity
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
 
-		public delegate void BroadcastResponse(QBitNinja.Models.BroadcastResponse result, NBitcoin.Network network);
+		public delegate void BroadcastResponse(QBitNinja.Client.Models.BroadcastResponse result, NBitcoin.Network network);
 		static public void Broadcast(Transaction transaction, NBitcoin.Network network, BroadcastResponse response)
 		{
 			ObservableWWW.Post(URL(network, "transactions"), transaction.ToBytes(), HEADER()).
@@ -58,35 +58,35 @@ namespace QBitNinja4Unity
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
 
-		public delegate void GetBlockResponse(QBitNinja.Models.GetBlockResponse result, NBitcoin.Network network);
-		static public void GetBlock(QBitNinja.Models.BlockFeature blockFeature, NBitcoin.Network network, GetBlockResponse response, bool headerOnly = false, bool extended = false)
+		public delegate void GetBlockResponse(QBitNinja.Client.Models.GetBlockResponse result, NBitcoin.Network network);
+		static public void GetBlock(QBitNinja.Client.Models.BlockFeature blockFeature, NBitcoin.Network network, GetBlockResponse response, bool headerOnly = false, bool extended = false)
 		{
 			ObservableWWW.Get(URL(network, "blocks/" + EscapeUrlPart(blockFeature.ToString()) + CreateParameters("headerOnly",headerOnly,"extended",extended))).
 			             	Subscribe(	x   =>	response(JsonUtility.FromJson<Models.GetBlockResponse>(x).Result(),network),
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
 
-		public delegate void BlockHeaderResponse(QBitNinja.Models.WhatIsBlockHeader result, NBitcoin.Network network);
-		static public void BlockHeader(QBitNinja.Models.BlockFeature blockFeature, NBitcoin.Network network, BlockHeaderResponse response)
+		public delegate void BlockHeaderResponse(QBitNinja.Client.Models.WhatIsBlockHeader result, NBitcoin.Network network);
+		static public void BlockHeader(QBitNinja.Client.Models.BlockFeature blockFeature, NBitcoin.Network network, BlockHeaderResponse response)
 		{
 			ObservableWWW.Get(URL(network, "blocks/" + EscapeUrlPart(blockFeature.ToString()) + "/header")).
                             Subscribe(	x   =>	response(JsonUtility.FromJson<Models.WhatIsBlockHeader>(x).Result(),network),
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
 
-		public delegate void GetBalanceResponse(QBitNinja4Unity.Models.BalanceModelJson result, NBitcoin.Network network);
+		public delegate void GetBalanceResponse(QBitNinja.Client.Models.BalanceModel result, NBitcoin.Network network);
 		static public void GetBalance(BitcoinAddress address, NBitcoin.Network network, GetBalanceResponse response, bool includeImmature = false, bool unspentOnly = false, bool colored = true)
 		{
 			ObservableWWW.Get(URL(network, "balances/" + EscapeUrlPart(address.ToString()) + CreateParameters("includeImmature", includeImmature, "unspentOnly", unspentOnly, "colored", colored))).
-			             	Subscribe(	x   =>	response(JsonUtility.FromJson<QBitNinja4Unity.Models.BalanceModelJson>(x).Result(),network),
+			             Subscribe(	x   =>	response(JsonUtility.FromJson<Models.BalanceModel>(x).Result(),network),
 			                	      	ex	=>	Debug.Log("error : " + ex.Message));
 		}
 
-		public delegate void GetBalanceSummaryResponse(QBitNinja4Unity.Models.BalanceSummaryJson result, NBitcoin.Network network);
+		public delegate void GetBalanceSummaryResponse(QBitNinja.Client.Models.BalanceSummary result, NBitcoin.Network network);
 		static public void GetBalanceSummary(BitcoinAddress address, NBitcoin.Network network, GetBalanceSummaryResponse response, bool colored = true)
 		{
 			ObservableWWW.Get(URL(network, "balances/" + EscapeUrlPart(address.ToString()) + "/summary" + CreateParameters("colored", colored))).
-			             	Subscribe(	x	=> response(JsonUtility.FromJson<QBitNinja4Unity.Models.BalanceSummaryJson>(x).Result(),network),
+			             	Subscribe(	x	=> response(JsonUtility.FromJson<Models.BalanceSummary>(x).Result(),network),
 										ex	=>	Debug.Log("error : " + ex.Message));
 		}
 	}

@@ -7,11 +7,11 @@ namespace ProgrammingBlockchainCodeExamples
 		void Start()
 		{
 			var id = new uint256("0000000000000033f78469696b80110effbc73691d2ce40e2c5ef116e6f48623");
-			var blockFeature = new QBitNinja.Models.BlockFeature(id);
+			var blockFeature = new QBitNinja.Client.Models.BlockFeature(id);
 			QBitNinja4Unity.QBitNinjaClient.BlockHeader(blockFeature, Network.TestNet, BlockHeaderResponse);
 		}
 
-		void BlockHeaderResponse(QBitNinja.Models.WhatIsBlockHeader result, Network network)
+		void BlockHeaderResponse(QBitNinja.Client.Models.WhatIsBlockHeader result, Network network)
 		{
 			UnityEngine.Debug.Log(result.Hash);
 			UnityEngine.Debug.Log(result.Previous);

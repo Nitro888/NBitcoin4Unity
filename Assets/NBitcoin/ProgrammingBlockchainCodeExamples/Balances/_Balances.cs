@@ -10,9 +10,9 @@ namespace ProgrammingBlockchainCodeExamples
 			QBitNinja4Unity.QBitNinjaClient.GetBalance(bitcoinPrivateKey.GetAddress(), bitcoinPrivateKey.Network, GetBalanceResponse);
 		}
 
-		void GetBalanceResponse(QBitNinja4Unity.Models.BalanceModelJson result, Network network)
+		void GetBalanceResponse(QBitNinja.Client.Models.BalanceModel result, Network network)
 		{
-			UnityEngine.Debug.Log(UnityEngine.JsonUtility.ToJson(result,true));
+			UnityEngine.Debug.Log(result.Continuation);
 		}
 	}
 }

@@ -61,14 +61,14 @@ public class NBitcoinExample : MonoBehaviour {
 		Debug.Log(bitcoinPubKey.Hash);
 	}
 	//--------------------------------------------------------------------------------
-	QBitNinja.Models.GetTransactionResponse transactionResponse_04_01;
+	QBitNinja.Client.Models.GetTransactionResponse transactionResponse_04_01;
 	void Sample_04_Transaction()
 	{
 		// http://api.qbit.ninja/transactions/f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
 		var transactionID	= uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94");
 		QBitNinja4Unity.QBitNinjaClient.GetTransaction(transactionID, NBitcoin.Network.Main, Sample_04_01);
 	}
-	void Sample_04_01(QBitNinja.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
+	void Sample_04_01(QBitNinja.Client.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
 	{
 		/*
 		Debug.Log("----------------------------------------------------------------");
@@ -133,7 +133,7 @@ public class NBitcoinExample : MonoBehaviour {
 		OutPoint	firstPreviousPoint	= transactionResponse.Transaction.Inputs[0].PrevOut;
 		QBitNinja4Unity.QBitNinjaClient.GetTransaction(firstPreviousPoint.Hash, network, Sample_04_02);
 	}
-	void Sample_04_02(QBitNinja.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
+	void Sample_04_02(QBitNinja.Client.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
 	{
 		Debug.Log(transactionResponse.IsCoinbase);
 
@@ -173,7 +173,7 @@ public class NBitcoinExample : MonoBehaviour {
 		var transactionID		= uint256.Parse("13cb292d07883f6a87b2db52c807e411e6330c9d7756535a7169a3ced8fe4385");
 		QBitNinja4Unity.QBitNinjaClient.GetTransaction(transactionID, network, Sample_05_01);
 	}
-	void Sample_05_01(QBitNinja.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
+	void Sample_05_01(QBitNinja.Client.Models.GetTransactionResponse transactionResponse, NBitcoin.Network network)
 	{
 		Debug.Log(transactionResponse.TransactionId);
 		Debug.Log(transactionResponse.Block.Confirmations);

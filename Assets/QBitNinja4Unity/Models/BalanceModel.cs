@@ -45,8 +45,9 @@ namespace QBitNinja4Unity.Models
 				result[i] = new QBitNinja.Client.Models.BalanceOperation();
 
 				result[i].Amount		= balanceOperations[i].amount;
+				result[i].Confirmations = balanceOperations[i].confirmations;
 				result[i].Height		= balanceOperations[i].height;
-				result[i].BlockId		= uint256.Parse(balanceOperations[i].blockId);
+				result[i].BlockId		= balanceOperations[i].blockId.Length==0?null:uint256.Parse(balanceOperations[i].blockId);
 				result[i].TransactionId	= uint256.Parse(balanceOperations[i].transactionId);
 				result[i].ReceivedCoins = new System.Collections.Generic.List<ICoin>(CoinJson.Create(balanceOperations[i].receivedCoins));
 				result[i].SpentCoins	= new System.Collections.Generic.List<ICoin>(CoinJson.Create(balanceOperations[i].spentCoins));

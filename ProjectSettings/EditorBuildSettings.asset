@@ -4,7 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/ZXing/ZXingQRCode.unity
-    guid: 3cb55430611ab478399ca26a8ef66baa
+  m_Scenes: []

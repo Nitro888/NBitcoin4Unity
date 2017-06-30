@@ -20,11 +20,11 @@ namespace ProgrammingBlockchainCodeExamples
 
 			var init = new Transaction();
 			init.Outputs.Add(new TxOut(Money.Coins(1m), bob.PubKey)); // P2PK
-			            init.Outputs.Add(new TxOut(Money.Coins(1m), alice.PubKey.Hash)); // P2PKH
-			            init.Outputs.Add(new TxOut(Money.Coins(1m), bobAlice));
+            init.Outputs.Add(new TxOut(Money.Coins(1m), alice.PubKey.Hash)); // P2PKH
+            init.Outputs.Add(new TxOut(Money.Coins(1m), bobAlice));
 
-			            /* Get the coins of the initial transaction */
-			            Coin[] coins = init.Outputs.AsCoins().ToArray();
+            /* Get the coins of the initial transaction */
+            Coin[] coins = init.Outputs.AsCoins().ToArray();
 
 			Coin bobCoin = coins[0];
 			Coin aliceCoin = coins[1];
@@ -58,7 +58,7 @@ namespace ProgrammingBlockchainCodeExamples
 			init = new Transaction();
 			init.Outputs.Add(new TxOut(Money.Coins(1.0m), bobAlice.Hash));
 
-			            coins = init.Outputs.AsCoins().ToArray();
+			coins = init.Outputs.AsCoins().ToArray();
 			ScriptCoin bobAliceScriptCoin = coins[0].ToScriptCoin(bobAlice);
 
 			builder = new TransactionBuilder();

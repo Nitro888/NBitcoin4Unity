@@ -15,7 +15,7 @@ namespace QBitNinja4Unity.Models
 
 		static public QBitNinja.Client.Models.BlockInformation Create(BlockInformation block)
 		{
-			if(block==null)
+			if(block==null || block.blockHeader == null)
 				return null;
 
 			var blockInformation			= new QBitNinja.Client.Models.BlockInformation(new BlockHeader(NBitcoin.DataEncoders.Encoders.Hex.DecodeData(block.blockHeader)));
